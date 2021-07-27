@@ -1,5 +1,5 @@
 """Functions for common math operations."""
-
+from functools import reduce
 
 def add(num_list):
     """Return the sum of the two inputs."""
@@ -22,12 +22,10 @@ def multiply(num_list):
         product = product * num
     return product
 
-def divide(num_list):
+def divide(num1, num2):
     """Divide the first input by the second and return the result."""
-    div = num_list[0]
-    for num in num_list[range[1:]]:
-        div = div / num
-    return div
+ 
+    return  num1/num2
 
 def square(num_list):
     """Return the square of the input."""

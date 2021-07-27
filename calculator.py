@@ -5,17 +5,26 @@ from arithmetic import (add, subtract, multiply, divide, square, cube,
 
 from functools import reduce
 while True:
+    
     equation = input('Enter equation: ')
-    eq = equation.split(' ')
-    nums_= []
-    for item in eq[1:]:
-        nums_.append(float(item))
 
-    if eq[0].lower().startswith('q'):
-        print("Exiting calculator")
+    eq = equation.split(' ')
+    if "q" in eq:
+        print("Exiting")
         break
 
-    elif eq[0] == '+':
+    nums_only= eq[1:]
+    nums_ = []
+
+    for num in nums_only:
+        if num.isdigit():
+            nums_.append(int(num))
+        else:
+            print("Try again using only digits following the operator.")
+            continue
+
+
+    if eq[0] == '+':
 
         answer = add(nums_)
 
@@ -26,7 +35,7 @@ while True:
         answer = multiply(nums_)
 
     elif eq[0] == '/':
-        answer = reduce(divide(nums_), nums_, nums_[0])
+        answer = reduce(divide, nums_)
 
     elif eq[0] == 'square':
         answer = square(nums_)
@@ -40,4 +49,4 @@ while True:
     elif eq[0] == 'mod':
         answer = mod(nums_)
 
-    print(answer)
+    print('{:.3f}'.format(answer))
