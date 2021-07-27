@@ -3,34 +3,41 @@
 from arithmetic import (add, subtract, multiply, divide, square, cube,
                         power, mod, )
 
+from functools import reduce
 while True:
     equation = input('Enter equation: ')
     eq = equation.split(' ')
+    nums_= []
+    for item in eq[1:]:
+        nums_.append(float(item))
 
     if eq[0].lower().startswith('q'):
         print("Exiting calculator")
         break
 
     elif eq[0] == '+':
-        answer = add(float(eq[1]), float(eq[2]))
+
+        answer = add(nums_)
 
     elif eq[0] == '-':
-        answer = subtract(float(eq[1]), float(eq[2]))
+        answer = subtract(nums_)
     
     elif eq[0] == '*':
-        answer = multiply(float(eq[1]), float(eq[2]))
+        answer = multiply(nums_)
 
     elif eq[0] == '/':
-        answer = divide(float(eq[1]), float(eq[2]))
+        answer = reduce(divide(nums_), nums_, nums_[0])
 
     elif eq[0] == 'square':
-        answer = square(float(eq[1]))
+        answer = square(nums_)
 
     elif eq[0] == 'cube':
-        answer = cube(float(eq[1]))
+        answer = cube(nums_)
 
     elif eq[0] == 'pow':
-        answer = power(float(eq[1]), float(eq[2]))
+        answer = power(nums_)
 
     elif eq[0] == 'mod':
-        answer = mod(float(eq[1]), float(eq[2]))
+        answer = mod(nums_)
+
+    print(answer)
