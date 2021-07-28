@@ -4,11 +4,16 @@ from arithmetic import (add, subtract, multiply, divide, square, cube,
                         power, mod, )
 
 from functools import reduce
-while True:
-    operations =['+', '-', '*', '/', 'square', 'cube', 'pow', 'mod']
-    equation = input('Enter equation: ')
-    
-    eq = equation.split(' ')
+
+#while True:
+op_file = open('operations.txt')
+
+for line in op_file:
+    line = line.strip(' ')
+    line= line.strip('\n')
+
+    #equation = input('Enter equation: ')
+    eq = line.split(' ')
 
     if "q" in eq:
         print("Exiting")
@@ -16,7 +21,7 @@ while True:
 
     nums_only= eq[1:]
     nums_ = []
-
+    operations =['+', '-', '*', '/', 'square', 'cube', 'pow', 'mod']
     for num in nums_only:
         if num.isdigit():
             nums_.append(int(num))
@@ -65,4 +70,11 @@ while True:
     elif eq[0] == 'mod':
         answer = mod(nums_)
 
+    store_answer = open('answers.txt', 'a')
+    store_answer.write(str(answer) + '\n')
+    store_answer.close()
+    
+
     print('{:.3f}'.format(answer))
+
+op_file.close()
